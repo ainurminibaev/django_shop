@@ -1,4 +1,5 @@
 # Create your views here.
+from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from shopCatalog.forms import GoodForm
@@ -29,3 +30,14 @@ def addGood(request):
     elif request.method == "GET":
         param_map["good_form"] = GoodForm()
         return render(request, "shopCatalog/addGood.html", param_map)
+
+def render_good(request, good_id):
+    param_map={}
+    try:
+           good = Good.objects.get(id=int(good_id))
+    except ObjectDoesNotExist:
+            good = None
+    if good is None:
+        return render(request, "errors/404.html")
+    param_map["good"] = good
+    return render(request, "shopCatalog/one_good.html", param_map)
