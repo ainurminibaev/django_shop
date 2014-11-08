@@ -28,7 +28,10 @@ urlpatterns = patterns('',
                        url(r'^catalog$', 'shopCatalog.views.render_catalog', name='catalog'),
 
                        url(r'^good/(?P<good_id>\d+)/$', 'shopCatalog.views.render_good', name='good_page'),
-                       url(r'^watched/$', "users.views.render_watched",  name='watched_goods'),
+
+                       url(r'^watched/$', "users.views.render_watched", name='watched_goods'),
+
+                       url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
                        url(r'^site/', include('admin.urls', namespace='site_admin')),
 )

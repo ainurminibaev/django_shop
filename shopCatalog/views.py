@@ -13,8 +13,7 @@ def index(request):
 
 
 def render_catalog(request):
-    param_map = {}
-    param_map["goods"] = Good.objects.all()
+    param_map = {"goods": Good.objects.all()}
     return render(request, "shopCatalog/catalog.html", param_map)
 
 

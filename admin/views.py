@@ -1,11 +1,14 @@
 # Create your views here.
-from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import permission_required
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
+
 from admin.forms import CategoryForm
 from shopCatalog.models import Category
 
 
+@permission_required("edit.category", login_url= reverse_lazy('login'))
 def render_manage_category(request):
     param_map = {}
     if request.method == "POST":
