@@ -10,6 +10,7 @@
 {% else %}
     <p>Welcome, new user. Please log in.</p>
     <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
 {% endif %}
 {% block body_block %}
     default text
