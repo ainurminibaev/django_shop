@@ -1,22 +1,84 @@
-<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>{{ title }}</title>
+    <title>{% block title %} My site title {% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <p>Welcome, new user. Please log in.</p>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'register' %}">Register</a>
-{% endif %}
-{% block body_block %}
-    default text
-{% endblock %}
-<footer>
-    footer
-</footer>
+<table width="920" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td height="25">&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="77" class="header">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="28%" align="left"><a href="http://www.templatesfreelance.com/"><img
+                            src="/static/images/logo.jpg"
+                            alt="" width="262"
+                            height="77"
+                            border="0"></a></td>
+                    <td width="72%" align="right">
+                        {% if user.is_authenticated %}
+                            Welcome, {{ user.username }}. &nbsp;&nbsp;
+                            <a href="{% url 'logout' %}">Logout</a> &nbsp;&nbsp;
+                        {% else %}
+                            <a href="{% url 'login' %}">Login</a> &nbsp;&nbsp;
+                            <a href="{% url 'register' %}">Register</a> &nbsp;&nbsp;
+                        {% endif %}
+                        <a href="{% url 'contacts' %}">Contacts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td height="38" class="menu">
+
+            <div class="menuLs">
+                <ul>
+                    <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">Home</a></li>
+                    <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">News</a></li>
+                    <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">Reviews</a></li>
+                    <li><a href="{% url 'catalog' %}" id="WhiteColor">Goods catalog</a></li>
+                    <li><a href="{% url 'add_good' %}" id="WhiteColor">Add good</a></li>
+                    <li><a href="{% url 'watched_goods' %}" id="WhiteColor">User watched goods</a></li>
+                    <li><a href="{% url 'contacts' %}" id="WhiteColor">Contacts</a></li>
+                    <li><a href="{% url 'site_admin:manage_category' %}" id="WhiteColor">Manage categories</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td height="20">&nbsp;</td>
+    </tr>
+    {% block body_block %}
+        default text
+    {% endblock %}
+    <tr>
+        <td height="20">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center"><a href="http://www.templatesfreelance.com/"><img src="/static/images/footer.gif" alt=""
+                                                                             width="920"
+                                                                             height="4" border="0"></a></td>
+    </tr>
+    <tr>
+        <td height="60" align="center"><a href="http://www.templatesfreelance.com/">Home</a> | <a
+                href="http://www.templatesfreelance.com/">News</a> | <a href="http://www.templatesfreelance.com/">Reviews</a>
+            | <a href="http://www.templatesfreelance.com/">How-To's</a> | <a href="http://www.templatesfreelance.com/">Downloads</a>
+            | <a href="http://www.templatesfreelance.com/">Shop &amp; Compare</a> | <a
+                    href="http://www.templatesfreelance.com/">Apps</a> | <a href="http://www.templatesfreelance.com/">Business
+                Center</a> | <a href="http://www.templatesfreelance.com/">FAQ</a> | <a
+                    href="http://www.templatesfreelance.com/">Contact Us</a><br>
+            TemplatesFreeLance.com &copy; copyright 2012 - <a href="http://www.templatesfreelance.com/">Web Page
+                Templates </a></td>
+    </tr>
+</table>
 </body>
 </html>
