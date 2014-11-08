@@ -1,5 +1,7 @@
-{% extends 'mainTemplate.html'%}
-{% block body_block%}
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
 
-   <h1>Hello world</h1>
+    <h1>Hello world</h1>
+    <a href="{% url 'catalog' %}">Goods catalog</a>
+    <a href="{% url 'add_good' %}">Add good</a>
 {% endblock %}

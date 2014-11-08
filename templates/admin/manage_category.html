@@ -1,0 +1,15 @@
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
+
+    <form action="{% url 'site_admin:manage_category' %}" method="post">
+    {% csrf_token %}
+    {{ category_form.as_p }}
+    <button type="submit">Add category</button>
+    </form>
+    <br/>
+    {% for category in categories %}
+        <p>
+        {{ category.name }}
+        </p>
+    {% endfor %}
+{% endblock %}

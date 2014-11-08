@@ -1,0 +1,11 @@
+{% extends 'mainTemplate.html'%}
+{% block body_block%}
+
+   <h1>It's goods page</h1>
+
+    {% for good in goods %}
+        <p>
+        {{ good.name }}
+        </p>
+    {% endfor %}
+{% endblock %}
