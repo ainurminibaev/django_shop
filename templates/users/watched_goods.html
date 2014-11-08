@@ -1,0 +1,13 @@
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
+
+    <h1>Your watched good list</h1>
+    {% if goods %}
+        {% for goodItem in goods %}
+            {% include "shopCatalog/good_item.html" with good=goodItem %}
+        {% endfor %}
+    {% else %}
+        Watched good list is empty
+    {% endif %}
+
+{% endblock %}

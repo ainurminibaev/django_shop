@@ -1,0 +1,14 @@
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
+
+    {% if next %}
+        <form action="{% url 'login' %}?next={{ next }}" method='POST'>
+    {% else %}
+        <form action="{% url 'login' %}" method='POST'>
+    {% endif %}
+{% csrf_token %}
+<input type="text" name="login"/>
+<input type="password" name="password">
+<button type="submit">Login</button>
+</form>
+{% endblock %}

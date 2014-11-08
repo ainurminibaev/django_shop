@@ -4,6 +4,13 @@
     <title>{{ title }}</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
 {% block body_block %}
     default text
 {% endblock %}
