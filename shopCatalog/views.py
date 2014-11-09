@@ -1,6 +1,5 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
@@ -72,6 +71,7 @@ def add_to_cart(request, good_id):
     order.save()
     return HttpResponseRedirect(reverse('cart'))
 
+
 @login_required(login_url=reverse_lazy('login'))
 def render_cart(request):
     param_map = {}
@@ -82,5 +82,18 @@ def render_cart(request):
 
     param_map["order"] = order
     return render(request, "shopCatalog/cart.html", param_map)
+
+
+@login_required(login_url=reverse_lazy('login'))
+def delete_from_cart(request, good_id):
+    good_id = int(good_id)
+    try:
+        order = Order.objects.get(is_purchased=False, user=request.user)
+    except ObjectDoesNotExist:
+        order = None
+    if order:
+        order.items = filter(lambda item: item.id != good_id, order.items.all())
+        order.save()
+    return HttpResponseRedirect(reverse('cart'))
 
 

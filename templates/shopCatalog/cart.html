@@ -3,26 +3,27 @@
     Your cart page
 {% endblock %}
 {% block body_block %}
-    {% if not order %}
+    {% if not order or not order.items.all %}
         Your cart is empty. Please, go to <a href="{% url 'catalog' %}">catalog</a> and add some
     {% else %}
         <h1>Goods in your cart</h1>
-    {% endif %}
-    <table class="table table-hover" width="920" border="0" cellspacing="0" cellpadding="0">
-        <thead>
-        <tr>
-            <th>Good name</th>
-            <th>Good price</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in order.items.all %}
+        <table class="table table-hover" width="920" border="0" cellspacing="0" cellpadding="0">
+            <thead>
             <tr>
-                <td><a href="{% url 'good_page' item.id %}">{{ item.name }}</a></td>
-                <td>{{ item.price }}</td>
-                <td><a href="{% url 'delete_from_cart' item.id %}">Delete from cart</a></td>
+                <th>Good name</th>
+                <th>Good price</th>
+                <th>Delete</th>
             </tr>
-        {% endfor %}
-        </tbody>
+            </thead>
+            <tbody>
+            {% for item in order.items.all %}
+                <tr>
+                    <td><a href="{% url 'good_page' item.id %}">{{ item.name }}</a></td>
+                    <td>{{ item.price }}</td>
+                    <td><a href="{% url 'delete_from_cart' item.id %}">Delete from cart</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

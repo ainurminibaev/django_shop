@@ -35,6 +35,9 @@ urlpatterns = patterns('',
 
                        url(r'^cart/$', "shopCatalog.views.render_cart", name='cart'),
 
+                       url(r'^cart/delete/(?P<good_id>\d+)$', "shopCatalog.views.delete_from_cart",
+                           name='delete_from_cart'),
+
                        url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
                        url(r'^site/', include('admin.urls', namespace='site_admin')),
