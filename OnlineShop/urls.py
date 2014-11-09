@@ -31,6 +31,10 @@ urlpatterns = patterns('',
 
                        url(r'^watched/$', "users.views.render_watched", name='watched_goods'),
 
+                       url(r'^good/(?P<good_id>\d+)/add$', 'shopCatalog.views.add_to_cart', name='add_to_cart'),
+
+                       url(r'^cart/$', "shopCatalog.views.render_cart", name='cart'),
+
                        url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
                        url(r'^site/', include('admin.urls', namespace='site_admin')),

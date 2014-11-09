@@ -26,6 +26,7 @@
                         {% if user.is_authenticated %}
                             Welcome, {{ user.username }}. &nbsp;&nbsp;
                             <a href="{% url 'logout' %}">Logout</a> &nbsp;&nbsp;
+                            <a href="{% url 'cart' %}">Cart</a> &nbsp;&nbsp;
                         {% else %}
                             <a href="{% url 'login' %}">Login</a> &nbsp;&nbsp;
                             <a href="{% url 'register' %}">Register</a> &nbsp;&nbsp;
@@ -42,7 +43,7 @@
 
             <div class="menuLs">
                 <ul>
-                    <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">Home</a></li>
+                    <li><a href="/" id="WhiteColor">Home</a></li>
                     <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">News</a></li>
                     <li><a href="http://www.templatesfreelance.com/" id="WhiteColor">Reviews</a></li>
                     <li><a href="{% url 'catalog' %}" id="WhiteColor">Goods catalog</a></li>
@@ -57,9 +58,13 @@
     <tr>
         <td height="20">&nbsp;</td>
     </tr>
-    {% block body_block %}
-        default text
-    {% endblock %}
+    <tr>
+        <td>
+            {% block body_block %}
+                default text
+            {% endblock %}
+        </td>
+    </tr>
     <tr>
         <td height="20">&nbsp;</td>
     </tr>

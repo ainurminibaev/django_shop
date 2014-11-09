@@ -1,11 +1,13 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 
 from shopCatalog.forms import GoodForm
-from shopCatalog.models import Good
+from shopCatalog.models import Good, Order
 
 
 def index(request):
@@ -47,3 +49,38 @@ def render_good(request, good_id):
     request.session["watched_goods"] = watched_goods
     param_map["good"] = good
     return render(request, "shopCatalog/one_good.html", param_map)
+
+
+@login_required(login_url=reverse_lazy('login'))
+def add_to_cart(request, good_id):
+    try:
+        good = Good.objects.get(id=int(good_id))
+    except ObjectDoesNotExist:
+        good = None
+    if good is None or not good.isAvailable:
+        return render(request, "errors/404.html")
+    # find unclosed order
+    try:
+        order = Order.objects.get(is_purchased=False, user=request.user)
+    except ObjectDoesNotExist:
+        order = Order()
+        order.user = request.user
+        order.save()
+
+    order.items.add(good)
+    order.totalPrice += good.price
+    order.save()
+    return HttpResponseRedirect(reverse('cart'))
+
+@login_required(login_url=reverse_lazy('login'))
+def render_cart(request):
+    param_map = {}
+    try:
+        order = Order.objects.get(is_purchased=False, user=request.user)
+    except ObjectDoesNotExist:
+        order = None
+
+    param_map["order"] = order
+    return render(request, "shopCatalog/cart.html", param_map)
+
+

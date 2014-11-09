@@ -46,11 +46,13 @@ class News(models.Model):
     text = models.TextField()
     date = models.DateField()
 
+
 # храним скидку для данного города,
 # что-то типа доп коэфициента
 class City(models.Model):
     name = models.CharField(max_length=20)
     discount = models.FloatField()
+
 
 # храним в бд, чтобы в случае выхода восстановить из бд
 # будем хранить в случае незавершенного заказа
@@ -58,18 +60,21 @@ class Basket(models.Model):
     user = models.ForeignKey(User)
     items = models.ManyToManyField(Good)
 
-# завершенные заказы
+
 class Order(models.Model):
     user = models.ForeignKey(User)
-    city = models.ForeignKey(City)
+    city = models.ForeignKey(City, null=True)
     items = models.ManyToManyField(Good)
-    totalPrice = models.FloatField()
+    totalPrice = models.FloatField(default=0.0)
+    is_purchased = models.BooleanField(default=False);
+
 
 # акции к определенной категории товаров
 class Action(models.Model):
     discount = models.FloatField()
     expireDate = models.DateField()
     category = models.ForeignKey(Category)
+
 
 # баннеры на главной странице,
 # возможно, их и не будет
