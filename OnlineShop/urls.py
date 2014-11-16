@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from users.forms import LoginForm
+from users.views import LoginView
 
 admin.autodiscover()
 
@@ -18,7 +20,7 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
 
                        url(r'^logout$', 'users.views.sign_out', name='logout'),
-                       url(r'^login$', 'users.views.sign_in', name='login'),
+                       url(r'^login$', LoginView.as_view(), name='login'),
                        url(r'^register$', 'users.views.register', name='register'),
 
                        url(r'^$', 'shopCatalog.views.index', name='index'),
