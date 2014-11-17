@@ -66,7 +66,9 @@ class Order(models.Model):
     city = models.ForeignKey(City, null=True)
     items = models.ManyToManyField(Good)
     totalPrice = models.FloatField(default=0.0)
-    is_purchased = models.BooleanField(default=False);
+    is_purchased = models.BooleanField(default=False)
+    address = models.CharField(max_length=500)
+    payment_method = models.CharField(max_length=100)
 
 
 # акции к определенной категории товаров

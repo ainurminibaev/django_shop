@@ -96,4 +96,31 @@ def delete_from_cart(request, good_id):
         order.save()
     return HttpResponseRedirect(reverse('cart'))
 
+def render_make_order(request):
+    param_map = {}
+    try:
+        order = Order.objects.get(is_purchased=False, user=request.user)
+    except ObjectDoesNotExist:
+        order = None
+    if(order is None):
+        return HttpResponseRedirect(reverse('index'))
+
+    param_map["order"] = order
+
+    return render(request, "shopCatalog/make_order.html", param_map)
+
+def make_order(request):
+    # TODO rewrite logic
+    param_map = {}
+    try:
+        order = Order.objects.get(is_purchased=False, user=request.user)
+    except ObjectDoesNotExist:
+        order = None
+    if(order is None):
+        return HttpResponseRedirect(reverse('index'))
+
+    param_map["order"] = order
+
+    return render(request, "shopCatalog/make_order.html", param_map)
+
 

@@ -1,7 +1,41 @@
-{% extends 'mainTemplate.html'%}
-{% block body_block%}
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
 
-   <h1>Оформление заказа</h1>
+    <h1>Оформление заказа</h1>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Good Name</th>
+          <th>Good count</th>
+          <th>Full price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order.items %}
+            <td>
+            {{item.category.name}}
+            </td>
+            <td>
+            {{ item.longName }}
+            </td>
+            <td>
+            1
+            </td>
+            <td>
+            {{ item.price }}
+            </td>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <form action="{% url 'order_make' %}" method="post">
+
+        <input type="text" name="address"/>
+        <input type="text" name="payment"/>
+        <button type="submit">Make order</button>
+    </form>
 
     Here will be good full info
 {% endblock %}
