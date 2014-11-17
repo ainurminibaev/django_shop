@@ -1,0 +1,22 @@
+{% extends 'mainTemplate.html' %}
+{% block body_block %}
+
+    <h1>Поздравляем, вы успешно оформили заказ</h1>
+
+    <div class="container">
+        <p>
+            Total price: {{ order.totalPrice }}
+            <br>
+            Total items: {{ order.items.all|length }}
+            <br>
+            Address: {{ order.address }}
+            <br>
+            {% if order.city %}
+                City: {{ order.city.name }}
+                <br>
+            {% endif %}
+        </p>
+    </div>
+
+    Here will be good full info
+{% endblock %}

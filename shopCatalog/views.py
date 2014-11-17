@@ -60,7 +60,7 @@ def add_to_cart(request, good_id):
         return render(request, "errors/404.html")
     # find unclosed order
     try:
-        order = Order.objects.get(is_purchased=False, user=request.user)
+        order = Order.objects.get(is_purchased=False, user__id=request.user.id)
     except ObjectDoesNotExist:
         order = Order()
         order.user = request.user
@@ -76,7 +76,7 @@ def add_to_cart(request, good_id):
 def render_cart(request):
     param_map = {}
     try:
-        order = Order.objects.get(is_purchased=False, user=request.user)
+        order = Order.objects.get(is_purchased=False, user__id=request.user.id)
     except ObjectDoesNotExist:
         order = None
 
@@ -88,7 +88,7 @@ def render_cart(request):
 def delete_from_cart(request, good_id):
     good_id = int(good_id)
     try:
-        order = Order.objects.get(is_purchased=False, user=request.user)
+        order = Order.objects.get(is_purchased=False, user__id=request.user.id)
     except ObjectDoesNotExist:
         order = None
     if order:
@@ -112,7 +112,9 @@ def render_make_order(request):
 
 
 def make_order(request):
-    # TODO rewrite logic
+    if (not request.method == 'POST'):
+        return HttpResponseRedirect(reverse('index'))
+
     param_map = {}
     try:
         order = Order.objects.get(is_purchased=False, user__id=request.user.id)
@@ -121,8 +123,14 @@ def make_order(request):
     if (order is None):
         return HttpResponseRedirect(reverse('index'))
 
+    address = request.POST["address"]
+    payment = request.POST["payment"]
+    order.address = address
+    order.payment_method = payment
+    order.is_purchased = True
+    order.save()
     param_map["order"] = order
 
-    return render(request, "shopCatalog/make_order.html", param_map)
+    return render(request, "shopCatalog/success_order.html", param_map)
 
 

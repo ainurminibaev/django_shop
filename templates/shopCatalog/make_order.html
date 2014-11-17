@@ -4,36 +4,41 @@
     <h1>Оформление заказа</h1>
 
     <table class="table table-hover">
-      <thead>
+        <thead>
         <tr>
-          <th>Category</th>
-          <th>Good Name</th>
-          <th>Good count</th>
-          <th>Full price</th>
+            <th>Category</th>
+            <th>Good Name</th>
+            <th>Good count</th>
+            <th>Full price</th>
         </tr>
-      </thead>
-      <tbody>
-        {% for item in order.items %}
+        </thead>
+        <tbody>
+        {% for item in order.items.all %}
             <td>
-            {{item.category.name}}
+                {{ item.category.name }}
             </td>
             <td>
-            {{ item.longName }}
+                {{ item.longName }}
             </td>
             <td>
-            1
+                1
             </td>
             <td>
-            {{ item.price }}
+                {{ item.price }}
             </td>
-      {% endfor %}
-      </tbody>
+        {% endfor %}
+        </tbody>
     </table>
 
     <form action="{% url 'approve_order' %}" method="post">
+        {% csrf_token %}
+        <p>
+            Address: <input type="text" name="address"/>
+        </p>
 
-        <input type="text" name="address"/>
-        <input type="text" name="payment"/>
+        <p>
+            Payment method: <input type="text" name="payment"/>
+        </p>
         <button type="submit">Make order</button>
     </form>
 
