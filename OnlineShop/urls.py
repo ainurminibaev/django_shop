@@ -3,7 +3,6 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-from users.forms import LoginForm
 from users.views import LoginView
 
 admin.autodiscover()
@@ -39,6 +38,10 @@ urlpatterns = patterns('',
 
                        url(r'^cart/delete/(?P<good_id>\d+)$', "shopCatalog.views.delete_from_cart",
                            name='delete_from_cart'),
+
+                       url(r'^order/make$', "shopCatalog.views.render_make_order", name='make_order'),
+
+                       url(r'^order/approve$', "shopCatalog.views.make_order", name='approve_order'),
 
                        url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
