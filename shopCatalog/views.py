@@ -134,3 +134,7 @@ def make_order(request):
     return render(request, "shopCatalog/success_order.html", param_map)
 
 
+def filter_catalog(request):
+    param_map = {}
+    param_map = {"good_list": Good.objects.all()}
+    return render(request, "shopCatalog/catalog_part.html", param_map)

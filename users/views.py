@@ -91,7 +91,7 @@ class LoginView(AuthorizedMixin, FormView):
         if user:
             login(self.request, user)
             if self.request.GET.has_key("next"):
-                return HttpResponseRedirect(self.GET["next"])
+                return HttpResponseRedirect(self.request.GET["next"])
             else:
                 return HttpResponseRedirect(reverse('index'))
         else:

@@ -43,6 +43,8 @@ urlpatterns = patterns('',
 
                        url(r'^order/approve$', "shopCatalog.views.make_order", name='approve_order'),
 
+                       url(r'^catalog/ajax$', "shopCatalog.views.filter_catalog", name='catalog_ajax'),
+
                        url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
                        url(r'^site/', include('admin.urls', namespace='site_admin')),

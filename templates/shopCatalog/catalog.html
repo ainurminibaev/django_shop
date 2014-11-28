@@ -1,9 +1,20 @@
-{% extends 'mainTemplate.html' %}
+{% extends 'mainTemplate_new.html' %}
+{% load static %}
+{% block custom_head %}
+    <link href="{% static "css/catalog.css" %}" rel="stylesheet" type="text/css">
+    <script src="/static/js/catalog.js"></script>
+{% endblock %}
 {% block body_block %}
 
-    <h1>It's goods page</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Goods catalog
+                <small>Phones</small>
+            </h1>
+        </div>
+    </div>
 
-    {% for goodItem in goods %}
-        {% include "shopCatalog/good_item.html" with good=goodItem %}
-    {% endfor %}
+    <div class="js-catalog-body">
+        {% include 'shopCatalog/catalog_part.html' with good_list=goods %}
+    </div>
 {% endblock %}
