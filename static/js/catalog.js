@@ -10,7 +10,7 @@ function getParameterByName(name) {
 
 $(document).ready(function () {
     var page = 0;
-    $(".js-catalog").click(function () {
+    $(".js-catalog").click(function (e) {
         var $this = $(this);
         if (!$this.hasClass('active')) {
             $(".js-catalog").removeClass('active');
@@ -45,7 +45,7 @@ $(document).ready(function () {
 //    }();
     if (getParameterByName("catalog")) {
         $(".js-catalog").removeClass('active');
-        $(".js-catalog[data-id=" + QueryString.catalog + "]").addClass('active');
+        $(".js-catalog[data-id=" + getParameterByName("catalog") + "]").addClass('active');
     }
 
     $("#slider-range").slider({
