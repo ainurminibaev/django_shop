@@ -83,9 +83,9 @@
             <p class="lead">Django Shop</p>
 
             <div class="list-group">
-                <a href="#" data-id="-1" class="list-group-item js-catalog active">All</a>
+                <a href="/catalog" data-id="-1" class="list-group-item js-catalog active">All</a>
                 {% for category in categories %}
-                    <a href="#" data-id="{{ category.id }}" class="list-group-item js-catalog">{{ category.name }}</a>
+                    <a href="/catalog?catalog={{ category.id }}" data-id="{{ category.id }}" class="list-group-item js-catalog">{{ category.name }}</a>
                 {% endfor %}
             </div>
             <div class="col-md-12">

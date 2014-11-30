@@ -12,17 +12,19 @@ $(document).ready(function () {
             $("#slider-range").slider("values", min_price, 2 * max_price - max_price / 2);
             catalogAjaxReloader();
         }
+        return false;
     });
 
     $("#slider-range").slider({
         range: true,
         min: min_price,
         max: 2 * max_price,
-        values: [ min_price + 5, 2 * max_price - max_price / 2 ],
+        values: [ min_price, 2 * max_price - max_price / 2 ],
         slide: function (event, ui) {
             $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
         },
         stop: function (event, ui) {
+            page = 0;
             catalogAjaxReloader();
         }
     });
