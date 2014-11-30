@@ -16,13 +16,6 @@ def index(request):
     return render(request, "mainPage.html")
 
 
-def render_catalog(request):
-    param_map = {"goods": Good.objects.all()}
-    param_map["min_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
-    param_map["max_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
-    return render(request, "shopCatalog/catalog.html", param_map)
-
-
 def addGood(request):
     param_map = {}
     if request.method == "POST":
@@ -143,23 +136,43 @@ def filter_catalog(request):
     param_map = {}
     if (request.method == 'POST'):
         request_map = request.POST
+        html_view_url = "shopCatalog/catalog_part.html"
     else:
         request_map = request.GET
+        param_map["min_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
+        param_map["max_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
+        param_map["c_price_l"] = param_map["min_price"]
+        param_map["c_price_r"] = 2 * param_map["max_price"] - param_map["max_price"] / 2
+        html_view_url = "shopCatalog/catalog.html"
 
     try:
         category_ = int(unicode(request_map.get("catalog", None)))
     except ValueError:
         category_ = None
+    try:
+        min_price = int(unicode(request_map.get("min_price", -sys.maxsize - 1)))
+        if request.method == 'GET' and min_price > param_map["min_price"]:
+            param_map["c_price_l"] = min_price
+    except ValueError:
+        min_price = -sys.maxsize - 1
 
-    min_price = int(unicode(request_map.get("min_price", -sys.maxsize - 1)))
-    max_price = int(unicode(request_map.get("max_price", sys.maxsize)))
+    try:
+        max_price = int(unicode(request_map.get("max_price", sys.maxsize)))
+        if request.method == 'GET' and max_price < param_map["max_price"]:
+            param_map["c_price_r"] = max_price
+    except ValueError:
+        max_price = sys.maxsize
+    try:
+        page = int(unicode(request_map.get("page", 0)))
+    except ValueError:
+        page = 0
     if category_ and min_price:
-        goods = Good.objects.filter(category__id=category_, price__range=(min_price, max_price))
+        goods = Good.objects.filter(category__id=category_, price__range=(min_price, max_price))[page * 3:3]
     else:
         if category_ and not min_price:
-            goods = Good.objects.filter(category__id=category_)
+            goods = Good.objects.filter(category__id=category_)[page * 3:3]
         else:
-            goods = Good.objects.filter(price__range=(min_price, max_price))
+            goods = Good.objects.filter(price__range=(min_price, max_price))[page * 3:3]
 
     param_map["good_list"] = goods
-    return render(request, "shopCatalog/catalog_part.html", param_map)
+    return render(request, html_view_url, param_map)

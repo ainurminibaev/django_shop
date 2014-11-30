@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
                        url(r'^add$', 'shopCatalog.views.addGood', name='add_good'),
 
-                       url(r'^catalog$', 'shopCatalog.views.render_catalog', name='catalog'),
+                       url(r'^catalog$', 'shopCatalog.views.filter_catalog', name='catalog'),
 
                        url(r'^good/(?P<good_id>\d+)/$', 'shopCatalog.views.render_good', name='good_page'),
 

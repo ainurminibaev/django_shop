@@ -27,6 +27,8 @@
         var csrf_token = "{{ csrf_token }}";
         {% if min_price %} var min_price = {{ min_price }}; {% endif %}
         {% if max_price %} var max_price = {{ max_price }}; {% endif %}
+        {% if c_price_l %} var c_price_l = {{ c_price_l }}; {% endif %}
+        {% if c_price_r %} var c_price_r = {{ c_price_r }}; {% endif %}
     </script>
     <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>

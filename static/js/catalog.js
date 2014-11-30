@@ -14,12 +14,38 @@ $(document).ready(function () {
         }
         return false;
     });
+    var QueryString = function () {
+        // This function is anonymous, is executed immediately and
+        // the return value is assigned to QueryString!
+        var query_string = {};
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            // If first entry with this name
+            if (typeof query_string[pair[0]] === "undefined") {
+                query_string[pair[0]] = pair[1];
+                // If second entry with this name
+            } else if (typeof query_string[pair[0]] === "string") {
+                var arr = [ query_string[pair[0]], pair[1] ];
+                query_string[pair[0]] = arr;
+                // If third or later entry with this name
+            } else {
+                query_string[pair[0]].push(pair[1]);
+            }
+        }
+        return query_string;
+    }();
+    if (QueryString.catalog) {
+        $(".js-catalog").removeClass('active');
+        $(".js-catalog[data-id=" + QueryString.catalog + "]").addClass('active');
+    }
 
     $("#slider-range").slider({
         range: true,
         min: min_price,
         max: 2 * max_price,
-        values: [ min_price, 2 * max_price - max_price / 2 ],
+        values: [ c_price_l, c_price_r ],
         slide: function (event, ui) {
             $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
         },
@@ -48,7 +74,8 @@ $(document).ready(function () {
         param_map.max_price = values[1];
 
         param_map.catalog = id;
-        param_map.page = page
+        param_map.page = page;
+        history.replaceState(document.URL, "Результаты поиска", "/catalog?" + buildStr(param_map));
         param_map.csrfmiddlewaretoken = csrf_token;
         $.ajax({
             "method": "POST",
@@ -72,6 +99,18 @@ $(document).ready(function () {
             }
         });
 
+    }
+
+    function buildStr(obj) {
+        var str = "";
+        for (var key in obj) {
+            str += key + '=';
+            if (obj[key]) {
+                str += obj[key];
+            }
+            str += "&";
+        }
+        return str;
     }
 });
 

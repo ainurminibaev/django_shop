@@ -5,6 +5,7 @@
     <link href="{% static "ui/jquery-ui.min.css" %}" rel="stylesheet" type="text/css">
 
     <script src="/static/ui/jquery-ui.min.js"></script>
+    <script src="/static/js/history.min.js"></script>
     <script src="/static/js/catalog.js"></script>
 
 {% endblock %}
@@ -12,7 +13,7 @@
     <div class="row">
         <p>
             <label for="amount">Price range:</label>
-            <input type="text" id="amount" readonly style="border:0;font-weight:bold;" value="${{ min_price }} - ${{ max_price }}">
+            <input type="text" id="amount" readonly style="border:0;font-weight:bold;" value="${{ c_price_l }} - ${{ c_price_r }}">
         </p>
 
         <div id="slider-range"></div>
@@ -31,6 +32,6 @@
     </div>
 
     <div class="js-catalog-body">
-        {% include 'shopCatalog/catalog_part.html' with good_list=goods %}
+        {% include 'shopCatalog/catalog_part.html' with good_list=good_list %}
     </div>
 {% endblock %}
