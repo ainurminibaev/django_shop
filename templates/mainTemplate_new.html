@@ -23,9 +23,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script type="text/javascript">
-    var csrf_token = "{{ csrf_token }}";
-</script>
+    <script type="text/javascript">
+        var csrf_token = "{{ csrf_token }}";
+        {% if min_price %} var min_price = {{ min_price }}; {% endif %}
+        {% if max_price %} var max_price = {{ max_price }}; {% endif %}
+    </script>
     <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 
@@ -85,6 +87,10 @@
                 {% for category in categories %}
                     <a href="#" data-id="{{ category.id }}" class="list-group-item js-catalog">{{ category.name }}</a>
                 {% endfor %}
+            </div>
+            <div class="col-md-12">
+                {% block custom_left_block %}
+                {% endblock %}
             </div>
         </div>
 

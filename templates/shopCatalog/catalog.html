@@ -2,14 +2,30 @@
 {% load static %}
 {% block custom_head %}
     <link href="{% static "css/catalog.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "ui/jquery-ui.min.css" %}" rel="stylesheet" type="text/css">
+
+    <script src="/static/ui/jquery-ui.min.js"></script>
     <script src="/static/js/catalog.js"></script>
+
 {% endblock %}
+{% block custom_left_block %}
+    <div class="row">
+        <p>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly style="border:0;font-weight:bold;">
+        </p>
+
+        <div id="slider-range"></div>
+
+    </div>
+{% endblock %}
+
 {% block body_block %}
 
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Goods catalog
-                <small>Phones</small>
+                <small id="catalog-title"></small>
             </h1>
         </div>
     </div>

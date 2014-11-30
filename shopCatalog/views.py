@@ -1,6 +1,9 @@
 # Create your views here.
+import sys
+
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Min
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -15,6 +18,8 @@ def index(request):
 
 def render_catalog(request):
     param_map = {"goods": Good.objects.all()}
+    param_map["min_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
+    param_map["max_price"] = int((Good.objects.filter().values_list("price").annotate(Min("price"))[0])[1])
     return render(request, "shopCatalog/catalog.html", param_map)
 
 
@@ -136,5 +141,25 @@ def make_order(request):
 
 def filter_catalog(request):
     param_map = {}
-    param_map = {"good_list": Good.objects.all()}
+    if (request.method == 'POST'):
+        request_map = request.POST
+    else:
+        request_map = request.GET
+
+    try:
+        category_ = int(unicode(request_map.get("catalog", None)))
+    except ValueError:
+        category_ = None
+
+    min_price = int(unicode(request_map.get("min_price", -sys.maxsize - 1)))
+    max_price = int(unicode(request_map.get("max_price", sys.maxsize)))
+    if category_ and min_price:
+        goods = Good.objects.filter(category__id=category_, price__range=(min_price, max_price))
+    else:
+        if category_ and not min_price:
+            goods = Good.objects.filter(category__id=category_)
+        else:
+            goods = Good.objects.filter(price__range=(min_price, max_price))
+
+    param_map["good_list"] = goods
     return render(request, "shopCatalog/catalog_part.html", param_map)
