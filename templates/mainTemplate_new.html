@@ -165,6 +165,10 @@
         return false;
     });
     {% if not a_city %}
+        $("#city_modal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
         $("#city_modal").modal('show');
     {% endif %}
 </script>
