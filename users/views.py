@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 
-from shopCatalog.models import Good, Review
+from shopCatalog.models import Good, Review, City
 from users.forms import LoginForm
 from users.mixin import AuthorizedMixin
 
@@ -30,16 +31,16 @@ def sign_out(request):
 
 # def sign_in(request):
 # param_map = {}
-#     if request.POST:
-#         user = authenticate(
-#             username=request.POST["login"],
-#             password=request.POST["password"]
-#         )
-#         if user:
-#             login(request, user)
-#             if request.GET.has_key("next"):
-#                 return HttpResponseRedirect(request.GET["next"])
-#             else:
+# if request.POST:
+# user = authenticate(
+# username=request.POST["login"],
+# password=request.POST["password"]
+# )
+# if user:
+# login(request, user)
+# if request.GET.has_key("next"):
+# return HttpResponseRedirect(request.GET["next"])
+# else:
 #                 return HttpResponseRedirect(reverse('index'))
 #         else:
 #             return HttpResponseRedirect(reverse('login'))
@@ -109,3 +110,14 @@ class LoginView(AuthorizedMixin, FormView):
     # @method_decorator(no_auth_please(user_check_failed))
     def dispatch(self, request, *args, **kwargs):
         return super(LoginView, self).dispatch(request, *args, **kwargs)
+
+
+def change_city(request, city_id):
+    response = HttpResponseRedirect("/")
+    try:
+        city = City.objects.get(id=city_id)
+    except ObjectDoesNotExist:
+        return response
+    if (city):
+        response.set_cookie("city", city.id)
+    return response

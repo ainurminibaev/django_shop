@@ -63,7 +63,7 @@ def add_to_cart(request, good_id):
         order = Order()
         order.user = request.user
         order.save()
-
+    # TODO calc discount
     order.items.add(good)
     order.totalPrice += good.price
     order.save()

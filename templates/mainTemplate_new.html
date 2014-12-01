@@ -82,12 +82,16 @@
     <div class="row">
 
         <div class="col-md-3">
-            <p class="lead">Django Shop</p>
-
+            {#            <p class="lead">Django Shop</p>#}
+            <p>
+                <button type="button" class="btn btn-default center-block" id="city-btn">{{ a_city.name }}&nbsp;v
+                </button>
+            </p>
             <div class="list-group">
                 <a href="/catalog" data-id="-1" class="list-group-item js-catalog active">All</a>
                 {% for category in categories %}
-                    <a href="/catalog?catalog={{ category.id }}" data-id="{{ category.id }}" class="list-group-item js-catalog">{{ category.name }}</a>
+                    <a href="/catalog?catalog={{ category.id }}" data-id="{{ category.id }}"
+                       class="list-group-item js-catalog">{{ category.name }}</a>
                 {% endfor %}
             </div>
             <div class="col-md-12">
@@ -123,6 +127,47 @@
     </footer>
 
 </div>
+
+<div id="city_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% if a_city %}
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                {% endif %}
+                <h4 class="modal-title">Change city</h4>
+            </div>
+            <div class="modal-body">
+                {% if a_city %}
+                    <p>Do you want to change your city?</p>
+                {% else %}
+                    <p class="text text-warning">Please, select your city.</p>
+                {% endif %}
+                <div class="list-group">
+                    {% for city in cities %}
+                        <a href="/city/change/{{ city.id }}"
+                           class="list-group-item {% if city.id == a_city.id %}active{% endif %}">{{ city.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                {% if a_city %}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                {% endif %}
+                {#                <button type="button" class="btn btn-primary">Save changes</button>#}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#city-btn").on('click', function () {
+        $("#city_modal").modal('show');
+        return false;
+    });
+    {% if not a_city %}
+        $("#city_modal").modal('show');
+    {% endif %}
+</script>
 <!-- /.container -->
 </body>
 </html>

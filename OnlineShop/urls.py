@@ -21,6 +21,7 @@ urlpatterns = patterns('',
                        url(r'^logout$', 'users.views.sign_out', name='logout'),
                        url(r'^login$', LoginView.as_view(), name='login'),
                        url(r'^register$', 'users.views.register', name='register'),
+                       url(r'^city/change/(?P<city_id>\d+)/$', 'users.views.change_city', name='city_change'),
 
                        url(r'^$', 'shopCatalog.views.index', name='index'),
 
