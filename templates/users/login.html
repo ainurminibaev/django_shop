@@ -1,14 +1,22 @@
-{% extends 'mainTemplate.html' %}
+{% extends 'mainTemplate_new.html' %}
+{% load static %}
 {% block body_block %}
-
+<div class="row text-center">
+<div class="col-md-offset-4 col-md-5">
     {% if next %}
-        <form action="{% url 'login' %}?next={{ next }}" method='POST'>
+        <form class="form-signin" role="form" action="{% url 'login' %}?next={{ next }}" method='POST'>
     {% else %}
-        <form action="{% url 'login' %}" method='POST'>
+        <form class="form-signin" role="form" action="{% url 'login' %}" method='POST'>
     {% endif %}
-{% csrf_token %}
-{{ form.login }}
-{{ form.password }}
-<button type="submit">Login</button>
-</form>
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="text" id="inputEmail" name="login" class="form-control" placeholder="Email address" required=""
+           autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+    {% csrf_token %}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+</div>
 {% endblock %}

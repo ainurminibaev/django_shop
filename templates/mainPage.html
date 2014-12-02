@@ -1,197 +1,181 @@
-{% extends 'mainTemplate.html' %}
+{% extends 'mainTemplate_new.html' %}
 {% load static %}
 {% block title %} Main page title {% endblock %}
+{% block custom_head %}
+     <link href="{% static "css/main-page.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
 {% block body_block %}
-    <tr>
-        <td>
-            <table width="920" border="0" cellspacing="0" cellpadding="0">
-                <tr align="left" valign="top">
-                    <td width="192" height="479">
-                        <table width="192" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td height="38" class="topMenu LeftMenuHeader">Categories</td>
-                            </tr>
-                        </table>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td height="216" valign="top">
-                                    <div class="RightMenu">
-                                        <ul>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Atcapto
-                                                pecus</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Modo
-                                                uxor</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/"
-                                                   id="WhiteColor2">Genitus</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Valde
-                                                quae</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Velit fere
-                                                elitille</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Autem
-                                                distineo</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/"
-                                                   id="WhiteColor2">Distineo</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Valde
-                                                quae</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Velit fere
-                                                elitille</a></li>
-                                            <li><a href="http://www.templatesfreelance.com/" id="WhiteColor2">Valde
-                                                quae</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><a href="http://www.templatesfreelance.com/"><img src="/static/images/rightBaner.jpg" alt=""
-                                                                                      width="192" height="334"
-                                                                                      border="0"></a></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td width="727">
+    <div class="row carousel-holder">
 
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><a href="http://www.templatesfreelance.com/"><img src="/static/images/bigBaner.gif" alt=""
-                                                                                      width="727" height="312"
-                                                                                      border="0"></a></td>
-                            </tr>
-                            <tr>
-                                <td height="38" class="topMenu LeftMenuHeader">Featured Products<a
-                                        href="http://www.templatesfreelance.com"><img src="/static/images/spacer.gif" alt=""
-                                                                                      width="10" height="10" border="0"></a>
-                                </td>
-                            </tr>
-                        </table>
+        <div class="col-md-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
 
+    </div>
 
-                        <table width="242" height="262" border="0" cellpadding="0" cellspacing="0" class="Pr">
-                            <tr>
-                                <td valign="top" class="BodyBkg">
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td height="50" align="center"><a href="http://www.templatesfreelance.com/">Descisco
-                                                antehabeo distineo<br>
-                                                facilisi tation</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="142" align="center"><a
-                                                    href="http://www.templatesfreelance.com/"><img src="/static/images/shop.jpg"
-                                                                                                   alt="" width="217"
-                                                                                                   height="112"
-                                                                                                   border="0"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="34" align="center">starting at <span class="style1">$578</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <table width="210" border="0" cellspacing="0" cellpadding="0">
-                                                    <tr align="center">
-                                                        <td height="35"><a
-                                                                href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt1.jpg" alt="" width="101" height="29"
-                                                                border="0"></a></td>
-                                                        <td><a href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt2.jpg" alt="" width="91" height="29"
-                                                                border="0"></a></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+    <div class="row">
 
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
 
-                        <table width="242" height="262" border="0" cellpadding="0" cellspacing="0" class="Pr">
-                            <tr>
-                                <td valign="top" class="BodyBkg">
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td height="50" align="center"><a href="http://www.templatesfreelance.com/">Descisco
-                                                antehabeo distineo<br>
-                                                facilisi tation</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="142" align="center"><a
-                                                    href="http://www.templatesfreelance.com/"><img src="/static/images/shop.jpg"
-                                                                                                   alt="" width="217"
-                                                                                                   height="112"
-                                                                                                   border="0"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="34" align="center">starting at <span class="style1">$578</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <table width="210" border="0" cellspacing="0" cellpadding="0">
-                                                    <tr align="center">
-                                                        <td height="35"><a
-                                                                href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt1.jpg" alt="" width="101" height="29"
-                                                                border="0"></a></td>
-                                                        <td><a href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt2.jpg" alt="" width="91" height="29"
-                                                                border="0"></a></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+                <div class="caption">
+                    <h4 class="pull-right">$24.99</h4>
+                    <h4><a href="#">First Product</a>
+                    </h4>
 
+                    <p>See more snippets like this online store item at <a target="_blank"
+                                                                           href="http://www.bootsnipp.com">Bootsnipp -
+                        http://bootsnipp.com</a>.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
 
-                        <table width="242" height="262" border="0" cellpadding="0" cellspacing="0" class="Pr">
-                            <tr>
-                                <td valign="top" class="BodyBkg">
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td height="50" align="center"><a href="http://www.templatesfreelance.com/">Descisco
-                                                antehabeo distineo<br>
-                                                facilisi tation</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="142" align="center"><a
-                                                    href="http://www.templatesfreelance.com/"><img src="/static/images/shop.jpg"
-                                                                                                   alt="" width="217"
-                                                                                                   height="112"
-                                                                                                   border="0"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="34" align="center">starting at <span class="style1">$578</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <table width="210" border="0" cellspacing="0" cellpadding="0">
-                                                    <tr align="center">
-                                                        <td height="35"><a
-                                                                href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt1.jpg" alt="" width="101" height="29"
-                                                                border="0"></a></td>
-                                                        <td><a href="http://www.templatesfreelance.com/"><img
-                                                                src="/static/images/bt2.jpg" alt="" width="91" height="29"
-                                                                border="0"></a></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+
+                <div class="caption">
+                    <h4 class="pull-right">$64.99</h4>
+                    <h4><a href="#">Second Product</a>
+                    </h4>
+
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">12 reviews</p>
+
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+
+                <div class="caption">
+                    <h4 class="pull-right">$74.99</h4>
+                    <h4><a href="#">Third Product</a>
+                    </h4>
+
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">31 reviews</p>
+
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+
+                <div class="caption">
+                    <h4 class="pull-right">$84.99</h4>
+                    <h4><a href="#">Fourth Product</a>
+                    </h4>
+
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">6 reviews</p>
+
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+
+                <div class="caption">
+                    <h4 class="pull-right">$94.99</h4>
+                    <h4><a href="#">Fifth Product</a>
+                    </h4>
+
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <h4><a href="#">Like this template?</a>
+            </h4>
+
+            <p>If you like this template, then check out <a target="_blank"
+                                                            href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this
+                tutorial</a> on how to build a working review system for your online store!</p>
+            <a class="btn btn-primary" target="_blank"
+               href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+        </div>
+
+    </div>
+
 {% endblock %}
